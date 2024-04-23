@@ -123,7 +123,8 @@ public class AltoFormat implements OcrFormat {
     }
     int endIdx = fragment.indexOf(attribChar, position);
     if (startIdx > endIdx) {
-      throw new RuntimeException("Invalid start:"+startIdx+" - end:"+endIdx+" for fragment:'"+fragment+"'' (pos.: "+position+")");
+      String msg = "Invalid start:"+startIdx+" - end:"+endIdx+" for fragment:"+fragment+" (pos: "+position+")";
+      throw new RuntimeException(msg);
     }
     return Range.closedOpen(startIdx, endIdx);
   }
