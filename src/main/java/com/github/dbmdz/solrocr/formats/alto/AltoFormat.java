@@ -121,6 +121,10 @@ public class AltoFormat implements OcrFormat {
     } else {
       attribChar = '<';
     }
-    return Range.closedOpen(startIdx, fragment.indexOf(attribChar, position));
+    int endIdx = fragment.indexOf(attribChar, position);
+    if (startIdx > endIdx) {
+      throw new RuntimeException("Invalid start:"+startIdx+" - end:"+endIdx+" for fragment:'"+fragment+"'' (pos.: "+position+")");
+    }
+    return Range.closedOpen(startIdx, endIdx);
   }
 }
